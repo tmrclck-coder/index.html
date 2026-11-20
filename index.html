@@ -13,104 +13,448 @@
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         .electric-blue {
-            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
         }
         .electric-text {
-            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .glass-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
-            box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.08);
+            box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.08);
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-blue-500 selection:text-white">
+<body class="min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
 
     <!-- Header -->
-    <header class="w-full bg-white/80 backdrop-blur-md border-b border-gray-100 p-4 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
+    <header class="w-full bg-white/90 backdrop-blur-md border-b border-slate-100 p-4 sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto flex justify-between items-center gap-3">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 electric-blue rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/30">
+                <div class="w-10 h-10 electric-blue rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/25">
                     T
                 </div>
-                <span class="font-extrabold text-xl tracking-tight text-gray-900">THINK CHANGE <span class="electric-text">AI</span></span>
+                <span class="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900">
+                    THINK CHANGE <span class="electric-text">AI</span>
+                </span>
             </div>
-            
-            <button onclick="toggleDrawer()" class="electric-blue text-white px-5 py-2.5 rounded-xl font-semibold text-sm shadow-md shadow-blue-500/20 hover:opacity-95 transition flex items-center space-x-2">
-                <i class="fa-solid fa-compass"></i>
-                <span>Ask for Everything</span>
-                <i class="fa-solid fa-chevron-down text-xs"></i>
-            </button>
+
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button type="button" onclick="toggleDrawer()" class="hidden sm:flex border border-slate-200 text-slate-700 px-4 py-2.5 rounded-xl font-semibold text-sm hover:border-blue-400 transition items-center space-x-2">
+                    <i class="fa-solid fa-compass text-blue-600"></i>
+                    <span>Ask for Everything</span>
+                </button>
+                <button type="button" onclick="openLoginModal()" class="electric-blue text-white px-4 sm:px-5 py-2.5 rounded-xl font-semibold text-sm shadow-md shadow-blue-500/20 hover:opacity-95 transition flex items-center space-x-2">
+                    <i class="fa-solid fa-user-lock"></i>
+                    <span id="authBtnText">Client Login</span>
+                </button>
+            </div>
         </div>
     </header>
 
     <!-- Interactive Drawer -->
-    <div id="drawer" class="hidden bg-blue-50/50 border-b border-blue-100 p-6 transition-all duration-300 backdrop-blur-sm">
+    <div id="drawer" class="hidden bg-blue-50/60 border-b border-blue-100 p-6 transition-all duration-300">
         <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="p-5 glass-card rounded-2xl hover:border-blue-300 transition">
+            <div class="p-5 glass-card rounded-2xl">
                 <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-3 font-bold">
                     <i class="fa-solid fa-chart-line"></i>
                 </div>
-                <h3 class="font-bold text-gray-900 mb-1">MSME Fiscal Feasibility</h3>
-                <p class="text-sm text-gray-600">క్యాష్ ఫ్లో, ఇన్వెంటరీ క్లియరెన్స్ మరియు ప్రాఫిటబిలిటీ రికవరీ ప్లాన్‌లు.</p>
+                <h3 class="font-bold text-slate-900 mb-1">MSME Fiscal Feasibility</h3>
+                <p class="text-sm text-slate-600">క్యాష్ ఫ్లో, ఇన్వెంటరీ క్లియరెన్స్ మరియు ప్రాఫిటబిలిటీ రికవరీ ప్లాన్‌లు.</p>
             </div>
-            <div class="p-5 glass-card rounded-2xl hover:border-blue-300 transition">
+            <div class="p-5 glass-card rounded-2xl">
                 <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-3 font-bold">
                     <i class="fa-solid fa-code"></i>
                 </div>
-                <h3 class="font-bold text-gray-900 mb-1">Full-Stack Execution</h3>
-                <p class="text-sm text-gray-600">ESP32 హార్డ్‌వేర్ ఆర్కిటెక్చర్, API ఆటోమేషన్ మరియు క్లీన్ కోడ్ సొల్యూషన్స్.</p>
+                <h3 class="font-bold text-slate-900 mb-1">Full-Stack Execution</h3>
+                <p class="text-sm text-slate-600">ESP32 హార్డ్‌వేర్ ఆర్కిటెక్చర్, API ఆటోమేషన్ మరియు క్లీన్ కోడ్ సొల్యూషన్స్.</p>
             </div>
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <main class="max-w-5xl mx-auto px-4 py-16 md:py-24 text-center flex-grow flex flex-col justify-center items-center">
-        <div class="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200 text-blue-700 text-xs px-4 py-2 rounded-full font-bold mb-8 shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
-            <span>Zero BS Advisory + High-Performance Tech Stack</span>
-        </div>
-        
-        <h1 class="text-5xl md:text-7xl font-black text-gray-900 tracking-tight leading-[1.1] mb-6">
-            Brutally Honest Advisory<br>
-            <span class="electric-text">Meets High-End Execution</span>
-        </h1>
-        
-        <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-            కోడింగ్ లేదా ఇన్వెస్ట్‌మెంట్ పెట్టడానికి ముందే మీ బిజినెస్ యదార్థాన్ని అసెస్ చేయండి. అనవసరమైన ખర్చ్‌లు తగ్గించి పర్ఫెక్ట్ టెక్ సొల్యూషన్స్ పొందండి.
-        </p>
+    <!-- Main Section -->
+    <main class="max-w-5xl mx-auto px-4 py-12 md:py-16 flex-grow w-full">
 
-        <!-- High-End CTA / Subscription Button -->
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16 w-full max-w-md">
-            <a href="#" class="w-full sm:w-auto electric-blue text-white px-8 py-4 rounded-2xl font-bold shadow-xl shadow-blue-500/25 hover:opacity-95 transition flex items-center justify-center space-x-3 text-base">
-                <i class="fa-solid fa-bolt text-amber-300"></i>
-                <span>Subscribe & Launch Now</span>
-            </a>
-        </div>
-
-        <!-- Interactive Search Bar -->
-        <div class="w-full max-w-2xl relative shadow-2xl shadow-blue-500/10 rounded-2xl">
-            <input type="text" placeholder="మీ బిజినెస్ ఐడియా లేదా టెక్నికల్ ప్రాబ్లమ్ ఇక్కడ టైప్ చేయండి..." class="w-full p-5 pl-6 pr-36 rounded-2xl border-2 border-gray-100 bg-white focus:border-blue-500 focus:outline-none text-gray-800 placeholder-gray-400 font-medium">
-            <button class="absolute right-2.5 top-2.5 bottom-2.5 electric-blue text-white px-6 rounded-xl font-bold shadow-md hover:opacity-90 transition flex items-center space-x-2">
-                <span>Ask AI</span>
-                <i class="fa-solid fa-paper-plane text-xs"></i>
+        <!-- Active Client Banner -->
+        <div id="clientBanner" class="hidden mb-8 p-4 rounded-2xl bg-blue-50 border border-blue-200 flex flex-wrap items-center justify-between gap-3">
+            <div class="text-sm text-slate-800">
+                <span class="font-bold text-blue-700">Client Logged In:</span>
+                <span id="activeClientName" class="font-semibold"></span>
+                (<span id="activeBusinessType" class="text-slate-600"></span>)
+            </div>
+            <button type="button" onclick="logoutClient()" class="text-xs font-bold text-red-600 hover:underline">
+                Logout
             </button>
         </div>
+
+        <!-- Hero Section -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center space-x-2 bg-blue-50 border border-blue-200 text-blue-700 text-xs px-4 py-2 rounded-full font-bold mb-6">
+                <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+                <span>Zero BS Advisory + High-Performance Tech Stack</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight leading-[1.1] mb-5">
+                Brutally Honest Advisory<br>
+                <span class="electric-text">Meets High-End Execution</span>
+            </h1>
+
+            <p class="text-base sm:text-xl text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+                కోడింగ్ లేదా ఇన్వెస్ట్‌మెంట్ పెట్టడానికి ముందే మీ బిజినెస్ యదార్థాన్ని అసెస్ చేయండి. అనవసరమైన ఖర్చులు తగ్గించి పర్ఫెక్ట్ టెక్ సొల్యూషన్స్ పొందండి.
+            </p>
+
+            <!-- Primary Buttons: Get Action Plan (WhatsApp) + Toggle X-Ray Scan -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-3 mb-10">
+                <button type="button" onclick="openWhatsAppActionPlan()" class="w-full sm:w-auto electric-blue text-white px-7 py-4 rounded-2xl font-bold shadow-xl shadow-blue-500/25 hover:opacity-95 transition flex items-center justify-center space-x-2.5 text-base">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    <span>Get Action Plan</span>
+                </button>
+
+                <button type="button" onclick="toggleXRaySection()" class="w-full sm:w-auto border border-blue-200 bg-white text-blue-700 px-6 py-4 rounded-2xl font-bold hover:bg-blue-50 transition flex items-center justify-center space-x-2 text-base">
+                    <i class="fa-solid fa-x-ray"></i>
+                    <span id="xrayToggleText">Open X-Ray Scanner</span>
+                </button>
+            </div>
+
+            <!-- Interactive Search Bar -->
+            <form onsubmit="handleAskAI(event)" class="w-full max-w-2xl mx-auto relative shadow-xl shadow-blue-500/10 rounded-2xl">
+                <input id="askInput" type="text" required placeholder="మీ బిజినెస్ ఐడియా లేదా టెక్నికల్ ప్రాబ్లమ్ ఇక్కడ టైప్ చేయండి..." class="w-full p-4 sm:p-5 pl-5 pr-32 rounded-2xl border-2 border-slate-100 bg-white focus:border-blue-500 focus:outline-none text-slate-800 placeholder-slate-400 font-medium">
+                <button type="submit" class="absolute right-2 top-2 bottom-2 electric-blue text-white px-5 rounded-xl font-bold shadow-md hover:opacity-90 transition flex items-center space-x-2">
+                    <span>Ask AI</span>
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
+            </form>
+
+            <div id="askResult" class="hidden max-w-2xl mx-auto mt-4 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-left text-sm text-slate-700"></div>
+        </div>
+
+        <!-- Daily 3-Action Plan Section -->
+        <section class="mb-8 p-6 sm:p-8 glass-card rounded-3xl">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Client Execution</span>
+                    <h2 class="text-2xl font-black text-slate-900">Daily 3-Action Plan</h2>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                    <select id="businessSelect" onchange="renderActions()" class="border border-slate-200 rounded-xl px-3 py-2 text-sm font-semibold text-slate-700 bg-white">
+                        <option value="retail">Retail / Kirana / Medical</option>
+                        <option value="wholesale">Wholesale / Distributor</option>
+                        <option value="manufacturing">Manufacturing / Plastic / Unit</option>
+                    </select>
+                    <button type="button" onclick="openWhatsAppActionPlan()" class="electric-blue text-white px-4 py-2 rounded-xl text-sm font-bold shadow-sm hover:opacity-95 transition flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <span>Get Action Plan</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="actionList" class="space-y-3"></div>
+        </section>
+
+        <!-- Hidden by Default: Khata / Bill X-Ray Scanner Section -->
+        <section id="xray-section" class="hidden p-6 sm:p-8 glass-card rounded-3xl border-2 border-blue-100">
+            <div class="flex justify-between items-start gap-4 mb-5">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Leakage & Credit Audit</span>
+                    <h2 class="text-2xl font-black text-slate-900">Khata / Bill X-Ray Scan</h2>
+                    <p class="text-sm text-slate-600 mt-1">
+                        బిల్లు లేదా ఖాతా ఫొటో అప్‌లోడ్ చేసి, నెలవారీ సేల్స్, బాకీ (Pending Credit), ఖర్చులు వేసి క్యాష్ లీకేజ్ చెక్ చేయండి.
+                    </p>
+                </div>
+                <button type="button" onclick="toggleXRaySection()" class="text-xs font-bold text-slate-500 hover:text-slate-800 px-3 py-1.5 rounded-lg border border-slate-200">
+                    Hide
+                </button>
+            </div>
+
+            <form onsubmit="runXRayScan(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Bill / Khata Photo (Optional)</label>
+                    <input id="billPhoto" type="file" accept="image/*" onchange="previewBillPhoto(event)" class="w-full text-sm text-slate-600 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 border border-slate-200 rounded-xl p-1.5">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Monthly Sales (₹)</label>
+                    <input id="monthlySales" type="number" min="0" value="150000" required class="w-full p-3 rounded-xl border border-slate-200 text-sm font-semibold">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Pending Credit / Udhar (₹)</label>
+                    <input id="pendingCredit" type="number" min="0" value="45000" required class="w-full p-3 rounded-xl border border-slate-200 text-sm font-semibold">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Monthly Expenses / Stock Cost (₹)</label>
+                    <input id="monthlyExpense" type="number" min="0" value="110000" required class="w-full p-3 rounded-xl border border-slate-200 text-sm font-semibold">
+                </div>
+                <div class="md:col-span-2 flex flex-wrap items-center justify-between gap-4 pt-2">
+                    <div id="photoPreviewWrap" class="hidden items-center gap-3">
+                        <img id="photoPreviewImg" src="" alt="Bill preview" class="w-14 h-14 object-cover rounded-xl border border-slate-200">
+                        <span id="photoFileName" class="text-xs font-semibold text-slate-600"></span>
+                    </div>
+                    <button type="submit" class="ml-auto electric-blue text-white px-6 py-3 rounded-xl font-bold text-sm shadow-md hover:opacity-95 transition">
+                        <i class="fa-solid fa-x-ray mr-2"></i>Run X-Ray Scan
+                    </button>
+                </div>
+            </form>
+
+            <div id="xrayResult" class="hidden p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3"></div>
+        </section>
+
     </main>
 
+    <!-- Client Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-slate-900/50 hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-slate-100">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-black text-slate-900">Client Login</h3>
+                <button type="button" onclick="closeLoginModal()" class="text-slate-400 hover:text-slate-700 text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p class="text-sm text-slate-600 mb-4">మీ యాక్షన్ ప్లాన్ కోసం క్లైంట్ వివరాలు ఎంటర్ చేసి లాగిన్ అవ్వండి.</p>
+            <form onsubmit="handleClientLogin(event)" class="space-y-3.5">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Client / Business Name</label>
+                    <input id="loginName" type="text" required placeholder="ఉదా: Sri Sai Traders" class="w-full p-3 rounded-xl border border-slate-200 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">WhatsApp Number</label>
+                    <input id="loginContact" type="tel" required placeholder="98xxxxxxxx" class="w-full p-3 rounded-xl border border-slate-200 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Business Type</label>
+                    <select id="loginCategory" class="w-full p-3 rounded-xl border border-slate-200 text-sm bg-white">
+                        <option value="retail">Retail / Kirana / Medical</option>
+                        <option value="wholesale">Wholesale / Distributor</option>
+                        <option value="manufacturing">Manufacturing / Plastic / Unit</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full electric-blue text-white py-3 rounded-xl font-bold text-sm shadow-md hover:opacity-95 transition">
+                    Login & Save Profile
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="w-full bg-white border-t border-gray-100 py-8 text-center text-sm text-gray-500">
+    <footer class="w-full bg-white border-t border-slate-100 py-8 text-center text-sm text-slate-500 mt-12">
         <p>© 2026 Think Change AI. Designed with Pure White & Electric Blue Theme.</p>
     </footer>
 
     <script>
+        // మీ WhatsApp నంబర్ (country code తో) ఇక్కడ వేయండి ఉదా: "919876543210"
+        const WHATSAPP_NUMBER = "";
+        const STORAGE_KEY = "thinkchange_client_session";
+
+        const ACTION_PLANS = {
+            retail: [
+                "1. నిన్నటి క్యాష్ vs UPI/బాకీ లెక్కను ఉదయం 10 గంటలలోపు కన్ఫర్మ్ చేయండి.",
+                "2. 15 రోజులుగా కదలని స్టాక్ ఐటమ్స్‌పై ఫాస్ట్ మూవింగ్ కాంబో లేదా డిస్కౌంట్ పెట్టండి.",
+                "3. రెగ్యులర్ కస్టమర్లకి WhatsApp లో రీ-ఆర్డర్ రిమైండర్ పంపండి."
+            ],
+            wholesale: [
+                "1. 10 రోజులు దాటిన బకాయిల లిస్ట్ తీసి టాప్ 5 బయ్యర్లకు కాల్/WhatsApp చేయండి.",
+                "2. రీ-ఆర్డర్ చేయాల్సిన ఫాస్ట్-మూవింగ్ ఐటమ్స్ స్టాక్ లెవెల్ చెక్ చేయండి.",
+                "3. కొత్త రిటైలర్లకి క్యాష్-ఆన్-డెలివరీ లేదా తక్కువ క్రెడిట్ లిమిట్ ఆఫర్ చేయండి."
+            ],
+            manufacturing: [
+                "1. రా మెటీరియల్ వేస్టేజ్ / స్క్రాప్ శాతాన్ని ఈరోజు బ్యాచ్ వారీగా నమోదు చేయండి.",
+                "2. పెండింగ్ ఆర్డర్ల డెలివరీ టైమ్‌లైన్ & పేమెంట్ క్లియరెన్స్ చెక్ చేయండి.",
+                "3. యూనిట్ పవర్, లేబర్, మరియు ప్యాకింగ్ ఖర్చుల్లో ఒక అనవసర ఖర్చుని కట్ చేయండి."
+            ]
+        };
+
         function toggleDrawer() {
-            const drawer = document.getElementById('drawer');
-            drawer.classList.toggle('hidden');
+            const drawer = document.getElementById("drawer");
+            if (drawer) drawer.classList.toggle("hidden");
         }
+
+        function toggleXRaySection() {
+            const section = document.getElementById("xray-section");
+            const label = document.getElementById("xrayToggleText");
+            if (!section) return;
+
+            const isHidden = section.classList.toggle("hidden");
+            if (label) {
+                label.textContent = isHidden ? "Open X-Ray Scanner" : "Hide X-Ray Scanner";
+            }
+            if (!isHidden) {
+                section.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+        }
+
+        function openWhatsAppActionPlan() {
+            const categoryEl = document.getElementById("businessSelect");
+            const category = categoryEl ? categoryEl.value : "retail";
+            const rawSession = localStorage.getItem(STORAGE_KEY);
+            let clientInfo = "";
+
+            if (rawSession) {
+                try {
+                    const s = JSON.parse(rawSession);
+                    clientInfo = `Client: ${s.name} (${s.contact})\n`;
+                } catch (_) {}
+            }
+
+            const plans = ACTION_PLANS[category] || ACTION_PLANS.retail;
+            const message =
+                `Hi Think Change AI! నా బిజినెస్ కోసం Daily 3-Action Plan కావాలి.\n` +
+                clientInfo +
+                `Category: ${category.toUpperCase()}\n\n` +
+                `Today's Focus:\n${plans.join("\n")}`;
+
+            const encoded = encodeURIComponent(message);
+            const waUrl = WHATSAPP_NUMBER
+                ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`
+                : `https://wa.me/?text=${encoded}`;
+
+            window.open(waUrl, "_blank", "noopener,noreferrer");
+        }
+
+        function openLoginModal() {
+            const modal = document.getElementById("loginModal");
+            if (!modal) return;
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        }
+
+        function closeLoginModal() {
+            const modal = document.getElementById("loginModal");
+            if (!modal) return;
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        }
+
+        function handleClientLogin(event) {
+            event.preventDefault();
+            const name = document.getElementById("loginName").value.trim();
+            const contact = document.getElementById("loginContact").value.trim();
+            const category = document.getElementById("loginCategory").value;
+            if (!name || !contact) return;
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ name, contact, category }));
+            document.getElementById("businessSelect").value = category;
+            applyClientSession();
+            renderActions();
+            closeLoginModal();
+        }
+
+        function logoutClient() {
+            localStorage.removeItem(STORAGE_KEY);
+            applyClientSession();
+        }
+
+        function applyClientSession() {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            const banner = document.getElementById("clientBanner");
+            const authBtnText = document.getElementById("authBtnText");
+            if (!banner || !authBtnText) return;
+
+            if (raw) {
+                try {
+                    const session = JSON.parse(raw);
+                    document.getElementById("activeClientName").textContent = session.name;
+                    document.getElementById("activeBusinessType").textContent = session.category.toUpperCase();
+                    banner.classList.remove("hidden");
+                    authBtnText.textContent = session.name.split(" ")[0];
+                    return;
+                } catch (_) {
+                    localStorage.removeItem(STORAGE_KEY);
+                }
+            }
+            banner.classList.add("hidden");
+            authBtnText.textContent = "Client Login";
+        }
+
+        function renderActions() {
+            const select = document.getElementById("businessSelect");
+            const list = document.getElementById("actionList");
+            if (!select || !list) return;
+
+            const items = ACTION_PLANS[select.value] || ACTION_PLANS.retail;
+            list.innerHTML = items.map((text, idx) => `
+                <label class="flex items-start gap-3 p-4 rounded-2xl border border-slate-200 bg-white hover:border-blue-300 cursor-pointer transition">
+                    <input type="checkbox" class="mt-1 h-4 w-4 accent-blue-600 rounded" aria-label="Action ${idx + 1}">
+                    <span class="text-sm font-semibold text-slate-800">${text}</span>
+                </label>
+            `).join("");
+        }
+
+        function previewBillPhoto(event) {
+            const file = event.target.files && event.target.files[0];
+            const wrap = document.getElementById("photoPreviewWrap");
+            const img = document.getElementById("photoPreviewImg");
+            const label = document.getElementById("photoFileName");
+            if (!file || !wrap || !img || !label) return;
+
+            img.src = URL.createObjectURL(file);
+            label.textContent = file.name;
+            wrap.classList.remove("hidden");
+            wrap.classList.add("flex");
+        }
+
+        function runXRayScan(event) {
+            event.preventDefault();
+            const sales = Number(document.getElementById("monthlySales").value) || 0;
+            const credit = Number(document.getElementById("pendingCredit").value) || 0;
+            const expense = Number(document.getElementById("monthlyExpense").value) || 0;
+            const fileInput = document.getElementById("billPhoto");
+            const fileName = fileInput.files && fileInput.files[0] ? fileInput.files[0].name : "Manual Ledger Input";
+
+            const netCashMargin = sales - expense;
+            const creditRatio = sales > 0 ? Math.round((credit / sales) * 100) : 0;
+            const topLeak = credit > netCashMargin
+                ? `అప్పు/బాకీ (₹${credit.toLocaleString("en-IN")}) మీ నికర క్యాష్ మార్జిన్ కంటే ఎక్కువగా ఉంది—ఇదే అతిపెద్ద లీకేజ్.`
+                : `ఖర్చులు/స్టాక్ (₹${expense.toLocaleString("en-IN")}) మీద కంట్రోల్ పెంచితే క్యాష్ ఫ్లో వేగంగా పెరుగుతుంది.`;
+
+            const recoveryStep = credit > 0
+                ? `ఈరోజు కనీసం 25% బాకీ (₹${Math.round(credit * 0.25).toLocaleString("en-IN")}) వసూలు చేయడంపై ఫోకస్ పెట్టండి.`
+                : `కొత్త క్రెడిట్ ఇవ్వకుండా క్యాష్/అడ్వాన్స్ ఆర్డర్స్ పెంచండి.`;
+
+            const box = document.getElementById("xrayResult");
+            box.classList.remove("hidden");
+            box.innerHTML = `
+                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-slate-200 pb-2">
+                    <span class="font-black text-slate-900">X-Ray Report</span>
+                    <span class="text-xs font-semibold text-blue-700 bg-blue-100 px-3 py-1 rounded-full">${fileName}</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                    <div class="p-3 rounded-xl bg-white border border-slate-200">
+                        <div class="text-xs text-slate-500">Sales vs Expense Gap</div>
+                        <div class="font-bold text-slate-900">₹${netCashMargin.toLocaleString("en-IN")}</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-white border border-slate-200">
+                        <div class="text-xs text-slate-500">Pending Credit Load</div>
+                        <div class="font-bold text-slate-900">₹${credit.toLocaleString("en-IN")} (${creditRatio}%)</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-white border border-slate-200">
+                        <div class="text-xs text-slate-500">Status</div>
+                        <div class="font-bold ${creditRatio > 30 ? "text-amber-600" : "text-blue-700"}">${creditRatio > 30 ? "High Credit Lock" : "Moderate"}</div>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-800"><strong class="text-blue-700">Leakage Diagnosis:</strong> ${topLeak}</p>
+                <p class="text-sm text-slate-800"><strong class="text-blue-700">Today's Recovery Action:</strong> ${recoveryStep}</p>
+            `;
+        }
+
+        function handleAskAI(event) {
+            event.preventDefault();
+            const q = document.getElementById("askInput").value.trim();
+            const res = document.getElementById("askResult");
+            if (!q || !res) return;
+
+            res.classList.remove("hidden");
+            res.innerHTML = `
+                <div class="font-bold text-slate-900 mb-1">Quick Advisory for: "${q}"</div>
+                <p class="text-slate-700">
+                    ముందుగా ఈ సమస్య వల్ల వారానికి ఎంత రూపాయలు లేదా ఎంత టైమ్ నష్టం వస్తోందో లెక్కించండి. ఆ తర్వాత పెద్ద పెట్టుబడి పెట్టకుండా, 7 రోజుల టెస్ట్‌తో క్యాష్/ఆర్డర్ రిజల్ట్ చూసి స్కేల్ చేయండి.
+                </p>
+            `;
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            applyClientSession();
+            renderActions();
+        });
     </script>
 </body>
 </html>
